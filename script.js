@@ -79,9 +79,9 @@ function iterateLocations(locationsData){
         } else {
         location.weather = response.weather[0].main;
         location.wind = response.wind.speed;
-        location.temp_min = response.main.temp_min;
-        location.temp = response.main.temp;
-        location.temp_max = response.main.temp_max;
+        location.temp_min = Math.round(response.main.temp_min);
+        location.temp = Math.round(response.main.temp);
+        location.temp_max = Math.round(response.main.temp_max);
         location.url = response.url;
         location.name = response.city.name;
         }
@@ -139,9 +139,9 @@ function prepareForecast(response, location){
           wind = wind.sort(function(a,b) { return a - b;});
           location.weather = weather[weather.length - 1].main;
           location.wind = wind[wind.length - 1];
-          location.temp_min = temperatures[0];
+          location.temp_min = Math.round(temperatures[0]);
           location.temp = '';
-          location.temp_max = temperatures[temperatures.length - 1];
+          location.temp_max = Math.round(temperatures[temperatures.length - 1]);
           location.name = response.city.name;
           location.url = response.url;
           return location
