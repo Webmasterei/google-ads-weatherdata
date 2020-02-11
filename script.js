@@ -59,8 +59,9 @@ function iterateLocations(locationsData){
   // Remove Previously Updated Data LOCATION_UPDATE sets the hours for that.
   var locationsData = locationsData.filter(function(location){
      if(MODE=="FORECAST"){
-          return new Date(location.lastUpdate).getDay() != now.getDay();
-        } else {
+       var dateOfLastUpdate = Utilities.formatDate(location.lastUpdate, timeZone, 'd');
+       var today = Utilities.formatDate(now, timeZone, 'd');
+     } else {
           return new Date(location.lastUpdate).getTime() < now.getTime() - LOCATION_UPDATE * 36000;
         }
   });
